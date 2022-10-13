@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import * as ColorComponents from './components/ColorBlocks';
+import React from 'react';
+
+const ColorBlock = ({ color }) => {
+  const { Red, Green, Blue } = ColorComponents;
+
+  switch (color) {
+    case 'red':
+      return <Red />;
+    case 'green':
+      return <Green />;
+    case 'blue':
+      return <Blue />;
+    default:
+      return <></>;
+  }
+};
 
 function App() {
+  const [color, setColor] = React.useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button onClick={() => setColor('red')}>Red</button>
+      <button onClick={() => setColor('green')}>Green</button>
+      <button onClick={() => setColor('blue')}>Blue</button>
+      <ColorBlock color={color} />
+    </>
   );
 }
 
